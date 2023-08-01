@@ -10,14 +10,26 @@
 			"Nubium\\JUnitFormatter\\": "src/"
 		}
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"Nubium\\JUnitFormatter\\Tests\\": "tests/"
+		}
+	},
 	"require": {
 		"php": "^8.1"
 	},
 	"require-dev": {
 		"phpstan/phpstan": "^1.10",
-		"symfony/console": "^6.2"
+		"symfony/console": "^6.2",
+		"phpunit/phpunit": "^9.5.7",
+		"phpstan/phpstan-phpunit": "^1.1",
+		"phpstan/extension-installer": "^1.1",
+		"php-mock/php-mock": "^2.3"
 	},
 	"config": {
-		"sort-packages": true
+		"sort-packages": true,
+		"allow-plugins": {
+			"phpstan/extension-installer": true
+		}
 	}
 }
