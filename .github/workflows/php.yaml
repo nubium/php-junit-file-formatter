@@ -1,0 +1,70 @@
+name: PHP tests
+
+on:
+  push:
+  workflow_dispatch:
+  pull_request:
+    branches: [ master ]
+
+
+jobs:
+
+  validate-composer:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: [8.1]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php-version }}
+          ssh_key: ${{ secrets.SSH_KEY }}
+          ssh_key_pub: ${{ secrets.SSH_KEY_PUB }}
+
+      - name: Validate composer.json and composer.lock
+        uses: php-actions/composer@master
+        with:
+          php_version: 8.1
+          command: validate
+
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: php-actions/composer@master
+        with:
+          php_version: 8.1
+          php_extensions: uuid
+          ssh_key: ${{ secrets.SSH_KEY }}
+          ssh_key_pub: ${{ secrets.SSH_KEY_PUB }}
+
+      - name: Run phpstan
+        run: vendor/bin/phpstan -cphpstan.neon
+
+
+  phpunit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: [8.1]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: php-actions/composer@master
+        with:
+          php_version: ${{ matrix.php-version }}
+          ssh_key: ${{ secrets.SSH_KEY }}
+          ssh_key_pub: ${{ secrets.SSH_KEY_PUB }}
+
+      - name: Run unit tests
+        run: php -v && vendor/bin/phpunit -c phpunit.xml
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: report.xml
+          report_individual_runs: "true"
