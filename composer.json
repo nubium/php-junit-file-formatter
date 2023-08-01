@@ -1,0 +1,19 @@
+{
+	"name": "nubium/phpstan-junit-file-formatter",
+	"description": "JUnit file formatter for PHPStan",
+	"license": "proprietary",
+	"type": "library",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"Nubium\\JUnitFormatter\\": "src/"
+		}
+	},
+	"require": {
+		"php": "^8.1"
+	},
+	"config": {
+		"sort-packages": true
+	}
+}
