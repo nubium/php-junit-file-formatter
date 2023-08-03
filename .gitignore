@@ -1,0 +1,4 @@
+vendor
+composer.lock
+report.xml
+.phpunit.result.cache

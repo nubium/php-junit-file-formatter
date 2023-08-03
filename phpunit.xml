@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<phpunit
+	backupGlobals="false"
+	backupStaticAttributes="false"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	verbose="true"
+	stderr="true"
+>
+  <coverage/>
+  <testsuites>
+    <testsuite name="AppLogger Unit Test Suite">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
+  <logging>
+	  <junit outputFile="./report.xml"/>
+  </logging>
+</phpunit>
