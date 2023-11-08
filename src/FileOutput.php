@@ -10,8 +10,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class FileOutput implements Output
 {
     public function __construct(
-        private OutputInterface $streamOutput,
-        private OutputStyle $style
+        private readonly OutputInterface $streamOutput,
+        private readonly OutputStyle $style
     )
     {}
 

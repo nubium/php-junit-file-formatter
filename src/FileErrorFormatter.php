@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\StreamOutput;
 class FileErrorFormatter implements ErrorFormatter
 {
     public function __construct(
-        private string $outputFilePath,
+        private readonly string $outputFilePath,
         private readonly TableErrorFormatter $tableErrorFormatter,
         private readonly JunitErrorFormatter $junitErrorFormatter
     )
